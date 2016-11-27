@@ -33,7 +33,7 @@ def not_found(error):
 
 
 @LSAPI.errorhandler(400)
-def not_found(error):
+def bad_request(error):
     """Return JSONified 400"""
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
