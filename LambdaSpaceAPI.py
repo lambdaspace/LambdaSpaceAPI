@@ -49,12 +49,12 @@ def change_state():
     """Load json string from 'LambdaSpaceAPI.json' and convert to dictionary"""
     with open('LambdaSpaceAPI.json') as jsfile:
         jstring = jsfile.read()
-    jsonData = json.loads(jstring)
+    json_data = json.loads(jstring)
     try:
-        jsonData = check_status(jsonData)
+        json_data = check_status(json_data)
     except URLError:
         abort(500)
-    return jsonify(jsonData)
+    return jsonify(json_data)
 
 
 if __name__ == '__main__':
