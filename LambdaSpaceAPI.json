@@ -16,5 +16,13 @@
 	},
 	"state": {
 		"open": false
-	}
+	},
+	"issue_report_channels": [
+		"twitter"
+	],
+	"projects" : [
+		"https://github.com/lambdaspace",
+		"https://community.lambdaspace.gr/c/projects"
+	],
+	"cache": "m.05"
 }
