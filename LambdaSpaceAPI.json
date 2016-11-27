@@ -1,12 +1,12 @@
 {
-	"api": "1.0",
+	"api": "0.13",
 	"space": "Lambdaspace",
 	"logo": "https://www.lambdaspace.gr/dist/favicons/apple-touch-icon.png",
 	"url": "https://www.lambdaspace.gr",
 	"location": {
 		"address": "Ionos Dragoumi 39 - 6th floor Thessaloniki, 546 30, Greece",
-		"lon": 40.6398573,
-		"lat": 22.9408752
+		"lon": 40.6373204,
+		"lat": 22.9394253
 	},
 	"contact": {
 		"email": "info@lambdaspace.gr",
