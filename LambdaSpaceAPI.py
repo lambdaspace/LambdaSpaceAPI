@@ -14,26 +14,26 @@ __version__ = "1.0"
 LSAPI = Flask(__name__)
 CORS(LSAPI)
 
-"""Changes status depending on the number of devices connected to router """
+
 def check_status(jsobj):
+    """Changes status depending on the number of devices connected to router."""
     url = 'https://www.lambdaspace.gr/hackers.txt'
     try:
-        retv = urllib2.urlopen(url)
-    except:
-        """Bad code"""
-        print 'Could not open {0}'.format(url)
-    
+        retv = urlopen(url)
+    except URLError:
+        raise URLError
     if int(retv.read()) > 0:
         jsobj["state"]["open"] = True
     else:
         jsobj["state"]["open"] = False
+    return jsobj
 
-    return jsobj    
 
 @LSAPI.errorhandler(404)
 def not_found(error):
     """Return JSONified 404"""
     return make_response(jsonify({'error': 'Not found'}), 404)
+
 
 @LSAPI.errorhandler(400)
 def not_found(error):
@@ -41,19 +41,24 @@ def not_found(error):
     return make_response(jsonify({'error': 'Bad request'}), 400)
 
 
-    
+@LSAPI.errorhandler(500)
+def int_serv_error(error):
+    """Return JSONified 500"""
+    return make_response(jsonify({'error': 'Internla Server Error'}), 500)
+
+
 @LSAPI.route('/api/v1.0/SpaceAPI')
 def change_state():
+    """Load json string from 'LambdaSpaceAPI.json' and convert to dictionary"""
     with open('LambdaSpaceAPI.json') as jsfile:
-        """Load json string from 'LambdaSpaceAPI.json' and convert to dictionary"""
         jstring = jsfile.read()
-        jsonData = json.loads(jstring)
-
-        jsonData = check_status(jsonData)       
- 
+    jsonData = json.loads(jstring)
+    try:
+        jsonData = check_status(jsonData)
+    except URLError:
+        abort(500)
     return jsonify(jsonData)
 
 
-
-
- 
+if __name__ == '__main__':
+    LSAPI.run(debug=False, threaded=True)
