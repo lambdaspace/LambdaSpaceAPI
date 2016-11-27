@@ -1,10 +1,10 @@
 #!/usr/bin/env python2
-
-"""LambdaSpace Server's API"""
+# -*- coding: <UTF-8> -*-
+"""LambdaSpace's API"""
 from sys import exit
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, abort
 from flask_cors import CORS, cross_origin
-import urllib2
+from urllib2 import urlopen, URLError
 import json
 
 __author__ = "Kopsacheilis Charalampos, Mpazakas Filippos"
