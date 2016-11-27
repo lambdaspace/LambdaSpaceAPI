@@ -1,14 +1,14 @@
 #!/usr/bin/env python2
 # -*- coding: <UTF-8> -*-
 """LambdaSpace's API"""
-from sys import exit
-from flask import Flask, jsonify, abort
-from flask_cors import CORS, cross_origin
+#from sys import exit
 from urllib2 import urlopen, URLError
 import json
+from flask_cors import CORS, cross_origin
+from flask import Flask, jsonify, abort, make_response
 
 __author__ = "Kopsacheilis Charalampos, Mpazakas Filippos"
-__credits__= ["Kopsacheilis Charalampos", "Mpazakas Filippos"]
+__credits__ = ["Kopsacheilis Charalampos", "Mpazakas Filippos", "Kolokotronis Panagiotis"]
 __version__ = "1.0"
 
 LSAPI = Flask(__name__)
