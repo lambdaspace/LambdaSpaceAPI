@@ -22,10 +22,7 @@ def check_status(jsobj):
         retv = urlopen(url)
     except URLError:
         raise URLError
-    if int(retv.read()) > 0:
-        jsobj["state"]["open"] = True
-    else:
-        jsobj["state"]["open"] = False
+    jsobj["state"]["open"] = (int(retv.read() > 0))
     return jsobj
 
 
